@@ -1,0 +1,14 @@
+from cryptography.fernet import Fernet
+
+# Generate kunci
+key = Fernet.generate_key()
+cipher = Fernet(key)
+
+# Enkripsi file
+with open('attendance.csv', 'rb') as file:
+    encrypted_data = cipher.encrypt(file.read())
+
+with open('attendance_encrypted.csv', 'wb') as file:
+    file.write(encrypted_data)
+
+print("File berhasil dienkripsi!")
